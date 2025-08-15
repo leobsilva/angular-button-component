@@ -1,0 +1,77 @@
+/* Estilos específicos do componente de botão */
+:host {
+  display: inline-block;
+}
+
+/* Garantir que a fonte Inter seja carregada */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Animações personalizadas */
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Efeito de ripple para botões */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Estados de foco melhorados */
+button:focus-visible {
+  outline: 2px solid #7828c8;
+  outline-offset: 2px;
+}
+
+/* Transições suaves */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover com elevação sutil */
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(120, 40, 200, 0.15);
+}
+
+/* Active state */
+button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(120, 40, 200, 0.1);
+}
+
+/* Loading state */
+button:disabled {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  button {
+    font-size: 11px !important;
+  }
+}

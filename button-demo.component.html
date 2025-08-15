@@ -1,0 +1,222 @@
+<div class="min-h-screen bg-gray-50 p-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Componente de Botão</h1>
+      <p class="text-lg text-gray-600">Baseado no design do Figma com as variáveis exatas</p>
+      <div class="mt-4 p-4 bg-purple-100 rounded-lg inline-block">
+        <p class="text-sm text-purple-800">
+          <strong>Cores do Figma:</strong> Primary: #7828c8, Text: #ffffff, Background: #000000
+        </p>
+      </div>
+    </div>
+
+    <!-- Variantes de Botão -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Variantes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let button of buttonVariants" class="bg-white p-6 rounded-lg shadow-sm border">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">{{ button.label }}</h3>
+          <div class="space-y-3">
+            <app-button 
+              [variant]="button.variant"
+              (clicked)="onButtonClick(button.variant)"
+              [loading]="loadingStates[button.variant]"
+            >
+              {{ button.label }}
+            </app-button>
+            
+            <app-button 
+              [variant]="button.variant"
+              [disabled]="true"
+            >
+              Disabled
+            </app-button>
+          </div>
+          <div class="mt-3 text-xs text-gray-500">
+            Color: {{ button.color }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tamanhos -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Tamanhos</h2>
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="flex flex-wrap items-center gap-4">
+          <div *ngFor="let size of buttonSizes" class="flex flex-col items-center space-y-2">
+            <span class="text-sm font-medium text-gray-700">{{ size.label }}</span>
+            <app-button [size]="size.size">
+              {{ size.label }}
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Botões com Ícones -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Botões com Ícones</h2>
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <h3 class="text-lg font-medium text-gray-900">Ícone à Esquerda</h3>
+            <div class="space-y-3">
+              <app-button 
+                icon="plus"
+                iconPosition="left"
+                (clicked)="onIconButtonClick('left')"
+              >
+                Adicionar Item
+              </app-button>
+              
+              <app-button 
+                variant="outline"
+                icon="download"
+                iconPosition="left"
+                (clicked)="onIconButtonClick('download')"
+              >
+                Download
+              </app-button>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-lg font-medium text-gray-900">Ícone à Direita</h3>
+            <div class="space-y-3">
+              <app-button 
+                icon="arrow-right"
+                iconPosition="right"
+                (clicked)="onIconButtonClick('right')"
+              >
+                Próximo
+              </app-button>
+              
+              <app-button 
+                variant="ghost"
+                icon="external-link"
+                iconPosition="right"
+                (clicked)="onIconButtonClick('external')"
+              >
+                Abrir Link
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Botão Full Width -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Botão Full Width</h2>
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <app-button 
+          fullWidth="true"
+          (clicked)="onFullWidthClick()"
+        >
+          Botão de Largura Completa
+        </app-button>
+      </div>
+    </section>
+
+    <!-- Estados Interativos -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Estados Interativos</h2>
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <h3 class="text-lg font-medium text-gray-900">Estados de Loading</h3>
+            <div class="space-y-3">
+              <app-button 
+                [loading]="true"
+                variant="primary"
+              >
+                Carregando...
+              </app-button>
+              
+              <app-button 
+                [loading]="true"
+                variant="outline"
+              >
+                Processando
+              </app-button>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-lg font-medium text-gray-900">Estados Desabilitados</h3>
+            <div class="space-y-3">
+              <app-button 
+                [disabled]="true"
+                variant="primary"
+              >
+                Desabilitado
+              </app-button>
+              
+              <app-button 
+                [disabled]="true"
+                variant="outline"
+              >
+                Indisponível
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protótipo do Figma -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Protótipo do Figma</h2>
+      <div class="bg-black p-8 rounded-lg">
+        <div class="relative">
+          <!-- Simulação do frame do Figma -->
+          <div class="bg-[#000000] relative w-full h-32 rounded">
+            <app-button 
+              class="absolute left-[52px] top-14"
+              size="sm"
+            >
+              Button
+            </app-button>
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <p class="text-white text-sm">Representação do design original do Figma</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Especificações Técnicas -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Especificações Técnicas</h2>
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Variáveis do Figma</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li><strong>Primary Color:</strong> #7828c8</li>
+              <li><strong>Secondary Foreground:</strong> #ffffff</li>
+              <li><strong>Black:</strong> #000000</li>
+              <li><strong>Font:</strong> Inter Regular, 12px, 400 weight</li>
+              <li><strong>Line Height:</strong> 16px</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Funcionalidades</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li>✓ 5 variantes de botão</li>
+              <li>✓ 3 tamanhos diferentes</li>
+              <li>✓ Estados de loading e disabled</li>
+              <li>✓ Suporte a ícones</li>
+              <li>✓ Botão full width</li>
+              <li>✓ Animações e transições</li>
+              <li>✓ Responsivo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
